@@ -1,0 +1,20 @@
+{
+  "name": "Workshop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "server": "nodemon server.js",
+    "start": "concurrently 'nodemon server.js' 'cd client && npm start'"
+  },
+  "dependencies": {
+    "async": "^2.4.0",
+    "boom": "^4.3.1",
+    "hapi": "^16.1.1",
+    "node-soundcloud": "^0.0.6",
+    "pg-promise": "^5.6.7"
+  },
+  "devDependencies": {
+    "concurrently": "^3.4.0"
+  }
+}
