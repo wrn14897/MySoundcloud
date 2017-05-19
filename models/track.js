@@ -17,8 +17,8 @@ class track{
         /**********************************************************************/
         //TODO -> Let's implement queries here
         /**********************************************************************/
-        const query_select = `SELECT id FROM fav_track WHERE id = $1::int`;
-        const query_insert = `INSERT INTO fav_track (id) VALUES ($1::int)`;
+        const query_select = ``;
+        const query_insert = ``;
         db.task(t => {
             return t.oneOrNone(query_select, [id])
                 .then(doesExist => {
@@ -42,12 +42,12 @@ class track{
         //TODO -> Let's implement queries here
         /**********************************************************************/
         let query;
-        switch(filter.toLowerCase()){
+        switch(filter){
             case 'commented':
-                query = `SELECT * FROM fav_track WHERE comment IS NOT NULL AND comment != ''`;
+                query = ``;
                 break;
             case 'nocomment':
-                query = `SELECT * FROM fav_track WHERE comment IS NULL OR comment = ''`;
+                query = ``;
                 break;
             default:
                 query = `SELECT * FROM fav_track`;
@@ -83,7 +83,10 @@ class track{
             });
     }
     static removeTrack(db, track, cb){
-        const query = `DELETE FROM fav_track WHERE id = $1::int`;
+        /**********************************************************************/
+        //TODO -> Let's implement queries here
+        /**********************************************************************/
+        const query = ``;
         db.none(query, [track.id])
             .then(() => {
                 cb(null, {data: track});
