@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import ReactPlayer from 'react-player';
 import { Card, Button, Form, Image} from 'semantic-ui-react'
 
-
 const CLIENT_ID = "1c3aeb3f91390630d351f3c708148086";
 
 

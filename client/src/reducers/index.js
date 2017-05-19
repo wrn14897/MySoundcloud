@@ -3,23 +3,19 @@ import searchTracks, * as searchTracksSelectors from './searchTracks';
 import createTrackList, * as trackListSelectors from './trackList';
 import trackById, * as trackByIdSelectors       from './trackById';
 
+/**********************************************************************/
+//TODO -> Let's use combineReducers to construct state tree here
+/**********************************************************************/
 
-const trackListByFilter = combineReducers({
-    'all'       : createTrackList('all'),
-    'commented' : createTrackList('commented'),
-    'nocomment' : createTrackList('nocomment'),
-});
 
 const app = combineReducers({
     searchTracks,
-    trackListByFilter,
-    trackById,
 })
 
 export default app;
 
 
-//Selectors
+/* Selectors */
 export const getSearchTracks = (state) =>
     searchTracksSelectors.getTracks(state.searchTracks);
 export const getIsSearching  = (state) =>
@@ -27,11 +23,11 @@ export const getIsSearching  = (state) =>
 export const getSearchErrorMessage = (state) =>
     searchTracksSelectors.getErrorMessage(state.searchTracks);
 
-export const getTracks = (state, filter) => {
-    const {ids} = state.trackListByFilter[filter];
-    return ids.map(id => trackByIdSelectors.getTrackById(state.trackById, id));
-};
-export const getIsFetching = (state, filter) =>
-    trackListSelectors.getIsFetching(state.trackListByFilter[filter])
-export const getErrorMessage = (state, filter) =>
-    trackListSelectors.getErrorMessage(state.trackListByFilter[filter])
+
+
+/**********************************************************************/
+//TODO -> Let's implement search track selectors here
+/**********************************************************************/
+export const getTracks = (state, filter) => state
+export const getIsFetching = (state, filter) => state
+export const getErrorMessage = (state, filter) => state

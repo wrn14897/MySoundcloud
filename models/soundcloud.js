@@ -1,5 +1,5 @@
 const SC = require('node-soundcloud');
-const SC_CLIENT_ID = '1c3aeb3f91390630d351f3c708148086';
+const SC_CLIENT_ID = "1c3aeb3f91390630d351f3c708148086";
 
 SC.init({
     id : SC_CLIENT_ID
