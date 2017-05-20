@@ -24,7 +24,7 @@ server.connection({
  */
 
  /**********************************************************************/
- //TODO -> Let's implement route here
+ //TODO -> Let's implement search route here
  /**********************************************************************/
 
 
@@ -75,18 +75,11 @@ server.connection({
 //         });
 //     }
 // });
-//
-// server.route({
-//     method: 'DELETE',
-//     path: '/track',
-//     handler: (request, reply) => {
-//         const track = JSON.parse(request.payload);
-//         trackModule.removeTrack(db, track, (err, result) => {
-//             if (err) return reply(Boom.badImplementation(err));
-//             reply(result);
-//         });
-//     }
-// });
+
+/**********************************************************************/
+//TODO -> Let's implement delete track route here
+/**********************************************************************/
+
 
 
 server.start(err => {

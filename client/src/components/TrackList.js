@@ -18,16 +18,16 @@ class TrackList extends Component{
 
 TrackList.propTypes = {
     filter:         PropTypes.oneOf(['all', 'commented', 'nocomment', null]).isRequired,
-    tracks:         PropTypes.arrayOf(PropTypes.shape({
-        id     :    PropTypes.number.isRequired,
-        detail :    PropTypes.object.isRequired,
-        comment:    PropTypes.string,
-    }).isRequired).isRequired,
-    isFetching      :    PropTypes.bool.isRequired,
-    errorMessage    :    PropTypes.string,
-    fetchTracks     :    PropTypes.func.isRequired,
-    commentTrack    :    PropTypes.func.isRequired,
-    deleteTrack     :    PropTypes.func.isRequired,
+    // tracks:         PropTypes.arrayOf(PropTypes.shape({
+    //     id     :    PropTypes.number.isRequired,
+    //     detail :    PropTypes.object.isRequired,
+    //     comment:    PropTypes.string,
+    // }).isRequired).isRequired,
+    // isFetching      :    PropTypes.bool.isRequired,
+    // errorMessage    :    PropTypes.string,
+    // fetchTracks     :    PropTypes.func.isRequired,
+    // commentTrack    :    PropTypes.func.isRequired,
+    // deleteTrack     :    PropTypes.func.isRequired,
 };
 
 export default TrackList;

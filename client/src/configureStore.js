@@ -5,7 +5,7 @@
 
 import {createStore, applyMiddleware} from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-// import thunk from 'redux-thunk'; -> you can import thunk here as well
+import thunk from 'redux-thunk'; //-> you can import thunk here as well
 import app from './reducers';
 import {createLogger} from 'redux-logger';
 
@@ -17,7 +17,7 @@ import {createLogger} from 'redux-logger';
 
 
 const configureStore = () => {
-    const middlewares = [];
+    const middlewares = [thunk];
     if (process.env.NODE_ENV !== 'production'){
         middlewares.push(createLogger());
     }
