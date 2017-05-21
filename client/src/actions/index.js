@@ -14,6 +14,10 @@ export const addTrack = (track) => (dispatch, getState) => {
 
     return fetch(`/track`,{
         method: 'POST',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(track),
     })
     .then(response => response.json())

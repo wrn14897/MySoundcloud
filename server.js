@@ -33,48 +33,66 @@ server.connection({
     Track
  */
 
-//  server.route({
-//      method: 'POST',
-//      path: '/track',
-//      handler: (request, reply) => {
-//          const track = JSON.parse(request.payload);
-//          trackModule.insertTrack(db, track, (err, result) => {
-//              if (err) return reply(Boom.badImplementation(err));
-//              reply(result);
-//          });
-//      }
-//  });
-//
-// server.route({
-//     method: 'GET',
-//     path: '/track',
-//     handler: (request, reply) => {
-//         const {filter} = request.query;
-//         trackModule.getTracks(db, filter, (err, result) => {
-//             if (err) return reply(Boom.badImplementation(err));
-//             reply(result);
-//         });
-//     },
-//     config: {
-//         validate: {
-//             query: {
-//                 filter: Joi.string().valid('all', 'commented', 'nocomment').required(),
-//             }
-//         }
-//     }
-// });
-//
-// server.route({
-//     method: 'PUT',
-//     path: '/track',
-//     handler: (request, reply) => {
-//         const track = JSON.parse(request.payload);
-//         trackModule.updateTrack(db, track, (err, result) => {
-//             if (err) return reply(Boom.badImplementation(err));
-//             reply(result);
-//         });
-//     }
-// });
+ server.route({
+     method: 'POST',
+     path: '/track',
+     handler: (request, reply) => {
+         const track = request.payload;
+         trackModule.insertTrack(db, track, (err, result) => {
+             if (err) return reply(Boom.badImplementation(err));
+             reply(result);
+         });
+     },
+     config: {
+         validate: {
+             payload: {
+                 id       : Joi.number().integer().required(),
+                 detail   : Joi.object().required(),
+                 comment  : Joi.string().required().allow('').allow(null),
+             }
+         }
+     }
+ });
+
+server.route({
+    method: 'GET',
+    path: '/track',
+    handler: (request, reply) => {
+        const {filter} = request.query;
+        trackModule.getTracks(db, filter, (err, result) => {
+            if (err) return reply(Boom.badImplementation(err));
+            reply(result);
+        });
+    },
+    config: {
+        validate: {
+            query: {
+                filter: Joi.string().valid('all', 'commented', 'nocomment').required(),
+            }
+        }
+    }
+});
+
+server.route({
+    method: 'PUT',
+    path: '/track',
+    handler: (request, reply) => {
+        const track = request.payload;
+        trackModule.updateTrack(db, track, (err, result) => {
+            if (err) return reply(Boom.badImplementation(err));
+            reply(result);
+        });
+    },
+    config: {
+        validate: {
+            payload: {
+                id       : Joi.number().integer().required(),
+                detail   : Joi.object().required(),
+                comment  : Joi.string().required().allow('').allow(null),
+            }
+        }
+    }
+});
 
 /**********************************************************************/
 //TODO -> Let's implement delete track route here
