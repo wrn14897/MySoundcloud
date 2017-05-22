@@ -8,7 +8,11 @@ import SearchBar from './SearchBar';
 
 
 const AppMenu = ({filter}) => (
-    <Menu secondary stackable>
+    <Menu inverted stackable>
+        <Menu.Item header color={'orange'} active>
+            <Icon name='soundcloud' />
+            My Soundcloud
+        </Menu.Item>
         <Menu.Item name='ALL'        as={Link}  to='/all'         active={filter === 'all'} >
             <Icon name='like' size='large'/>
         </Menu.Item>
