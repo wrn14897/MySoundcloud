@@ -8,19 +8,19 @@ import SearchBar from './SearchBar';
 
 
 const AppMenu = ({filter}) => (
-    <Menu attached='top' pointing secondary>
-        <Menu.Item>
-            <SearchBar />
+    <Menu secondary stackable>
+        <Menu.Item name='ALL'        as={Link}  to='/all'         active={filter === 'all'} >
+            <Icon name='like' size='large'/>
+        </Menu.Item>
+        <Menu.Item name='COMMENTED'  as={Link}  to='/commented'   active={filter === 'commented'} >
+            <Icon name='comment' size='large'/>
+        </Menu.Item>
+        <Menu.Item name='NO COMMENT' as={Link}  to='/nocomment'   active={filter === 'nocomment'} >
+            <Icon name='comment outline' size='large'/>
         </Menu.Item>
         <Menu.Menu position='right'>
-            <Menu.Item name='ALL'        as={Link}  to='/all'         active={filter === 'all'} >
-                <Icon name='like' size='large'/>
-            </Menu.Item>
-            <Menu.Item name='COMMENTED'  as={Link}  to='/commented'   active={filter === 'commented'} >
-                <Icon name='comment' size='large'/>
-            </Menu.Item>
-            <Menu.Item name='NO COMMENT' as={Link}  to='/nocomment'   active={filter === 'nocomment'} >
-                <Icon name='comment outline' size='large'/>
+            <Menu.Item>
+                <SearchBar />
             </Menu.Item>
         </Menu.Menu>
     </Menu>
