@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 
 
 /**********************************************************************/
-//TODO -> Let's implement reducer here
+//TODO -> Let's implement createTrackList reducer
 /**********************************************************************/
 const createTrackList = (filter) => {
     const handleComment = (state, action) => {
@@ -10,15 +10,15 @@ const createTrackList = (filter) => {
     }
 
     const ids = (state=[], action) => {
-        return state
+
     };
 
     const isFetching = (state=false, action) => {
-        return state
+
     };
 
     const errorMessage = (state=null, action) => {
-        return state;
+
     };
     return combineReducers({
         ids,

@@ -1,10 +1,15 @@
 import omit from 'lodash/omit';
 
+
+/**********************************************************************/
+//TODO -> Let's implement trackById reducer
+/**********************************************************************/
+
 /*
     Consider cases we need to create hash table for track
  */
 const trackById = (state = {}, action) => {
-    return state;
+
 };
 
 export default trackById;

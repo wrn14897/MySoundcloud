@@ -17,8 +17,8 @@ class track{
         /**********************************************************************/
         //TODO -> Let's implement queries here
         /**********************************************************************/
-        const query_select = `SELECT id FROM fav_track WHERE id = $1::int`;
-        const query_insert = `INSERT INTO fav_track(id) VALUES ($1::int)`;
+        const query_select = ``;
+        const query_insert = ``;
         db.task(t => {
             return t.oneOrNone(query_select, [id])
                 .then(doesExist => {
@@ -50,7 +50,7 @@ class track{
                 query = ``;
                 break;
             default:
-                query = `SELECT * FROM fav_track`;
+                query = ``;
                 break;
         }
         db.any(query, [filter])

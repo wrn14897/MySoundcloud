@@ -1,22 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import ReactPlayer from 'react-player';
 import { Card, Button, Form, Image} from 'semantic-ui-react'
-
-const CLIENT_ID = "1c3aeb3f91390630d351f3c708148086";
-
-
-const soundcloudConfig = {
-    clientId: CLIENT_ID,
-    showArtwork: false,
-};
-const playerConfig = {
-    soundcloudConfig,
-    width   : '100%',
-    height  : 50,
-    controls: true
-}
-
 
 class Track extends Component{
     state = {
@@ -33,7 +17,7 @@ class Track extends Component{
     }
 
     render(){
-        const {track, commentTrack, deleteTrack}  = this.props;
+        const {track, commentTrack, deleteTrack, playTrack, playingTrack, isPlaying}  = this.props;
         const editArea = this.state.isEditing ?
                             <Form reply>
                                 <Form.TextArea onChange={ e => {
@@ -43,12 +27,17 @@ class Track extends Component{
                             :
                             track.comment;
         const editBtn = this.state.isEditing ?
-                            <Button basic color='green' content='Save' onClick={() => this.handleSaveComment.bind(this)(track, commentTrack)} />
+                            <Button basic icon='save' color='green' onClick={() => this.handleSaveComment.bind(this)(track, commentTrack)} />
                             :
-                            <Button basic color='green' content='Edit'onClick={() => this.toggleIsEditing()} />;
+                            <Button basic icon='edit' color='green' onClick={() => this.toggleIsEditing()} />;
+        const playBtn = (isPlaying && playingTrack && playingTrack.id === track.id) ?
+                            <Button basic icon='pause' color='violet' onClick={() => playTrack(track)}/>
+                            :
+                            <Button basic icon='play' color='blue' onClick={() => playTrack(track)}/>;
+
 
         return (
-            <Card raised>
+            <Card>
                 <Card.Content>
                     <Image floated='right' size='tiny' shape='circular' src={track.detail.artwork_url} />
                     <Card.Header>
@@ -63,14 +52,11 @@ class Track extends Component{
                         {editArea}
                     </Card.Description>
                 </Card.Content>
-                <ReactPlayer
-                    url={track.detail.permalink_url}
-                    {...playerConfig}
-                />
                 <Card.Content extra>
-                    <div className='ui two buttons'>
+                    <div className='ui three buttons'>
                         {editBtn}
-                        <Button basic color='red' onClick={() => deleteTrack(track)} >Delete</Button>
+                        <Button basic icon='trash outline' color='red' onClick={() => deleteTrack(track)} />
+                        {playBtn}
                     </div>
                 </Card.Content>
             </Card>
@@ -79,9 +65,12 @@ class Track extends Component{
 }
 
 Track.propTypes = {
-    track       : PropTypes.object.isRequired,
-    commentTrack: PropTypes.func.isRequired,
-    deleteTrack : PropTypes.func.isRequired,
+    track           : PropTypes.object.isRequired,
+    commentTrack    : PropTypes.func.isRequired,
+    deleteTrack     : PropTypes.func.isRequired,
+    playTrack       : PropTypes.func.isRequired,
+    playingTrack    : PropTypes.object,
+    isPlaying       : PropTypes.bool.isRequired,
 };
 
 

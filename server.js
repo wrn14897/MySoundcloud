@@ -3,9 +3,9 @@ const Hapi   = require('hapi');
 const Boom   = require('boom');
 const Joi    = require('joi');
 
-const pgp    = require('pg-promise')();
 //DB configs
-const db          = pgp(`postgres://Warren@localhost:5432/workshop`);
+const pgp    = require('pg-promise')();
+const db     = pgp(`postgres://Warren@localhost:5432/workshop`);
 //Models
 const trackModule = require('./models/track');
 //APIs
@@ -26,6 +26,8 @@ server.connection({
  /**********************************************************************/
  //TODO -> Let's implement search route here
  /**********************************************************************/
+
+
 
 
 

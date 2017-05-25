@@ -1,6 +1,3 @@
-/**********************************************************************/
-//TODO -> Let's implement thunk, logger middleware here
-/**********************************************************************/
 export const createLogger = ({getState}) => (next) => (action) => {
     const console = window.console;
     const prevState = getState();
@@ -13,6 +10,10 @@ export const createLogger = ({getState}) => (next) => (action) => {
     console.log(`%c next state`, `color: #4CAF50`, nextState);
     return returnValue;
 };
+
+/**********************************************************************/
+//TODO -> Let's implement thunk middleware here
+/**********************************************************************/
 export const thunk = ({getState, dispatch}) => (next) => (action) => {
     return next(action);
 };

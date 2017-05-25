@@ -21,7 +21,8 @@
     "redux-logger": "^3.0.1",
     "redux-thunk": "^2.2.0",
     "semantic-ui-css": "^2.2.10",
-    "semantic-ui-react": "^0.68.3"
+    "semantic-ui-react": "^0.68.3",
+    "soundcloud-audio": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -6,9 +6,6 @@ import * as schema from './schema';
  //TODO -> Let's implement search action creator
  /**********************************************************************/
 
-export const searchTracks = (q) => (dispatch, getState) => {
-
-}
 
 export const addTrack = (track) => (dispatch, getState) => {
 
@@ -33,8 +30,11 @@ export const addTrack = (track) => (dispatch, getState) => {
             message: error || 'Something wrong !!',
         });
     });
-
 }
+
+export const playingTrack = (id, player) =>
+    ({type: 'PLAYING_TRACK', response: {id, player}});
+
 
 
 export const fetchTracks = (filter) => (dispatch, getState) => {
@@ -66,3 +66,20 @@ export const fetchTracks = (filter) => (dispatch, getState) => {
 /**********************************************************************/
 //TODO -> Let's implement comment and delete action creator
 /**********************************************************************/
+
+
+/*
+    Player
+*/
+export const toggleShowingPlayer = () => (dispatch, getState) => dispatch({type: 'TOGGLE_SHOWING_PLAYER', });
+export const playTrack  = (track) => (dispatch, getState) => {
+    //get current playing track
+    const {player} = getState();
+    const {playingId, isPlaying} = player;
+
+    //If isPlaying => pause the track first...
+    if (isPlaying && (track.id !== playingId)){
+        dispatch({type: 'PLAY_TRACK', response: normalize(track, schema.track)});
+    };
+    dispatch({type: 'PLAY_TRACK', response: normalize(track, schema.track)});
+}

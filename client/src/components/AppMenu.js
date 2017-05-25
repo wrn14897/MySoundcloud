@@ -2,13 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
+import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import { Menu, Icon } from 'semantic-ui-react';
+import { Menu, Icon, Button} from 'semantic-ui-react';
+import {getIsShowingPlayer} from '../reducers';
+import {toggleShowingPlayer} from '../actions';
+
+
 import SearchBar from './SearchBar';
-
-
-const AppMenu = ({filter}) => (
-    <Menu inverted stackable>
+const AppMenu = ({filter, isShowingPlayer, toggleShowingPlayer}) => (
+    <Menu pointing inverted stackable>
         <Menu.Item header color={'orange'} active>
             <Icon name='soundcloud' />
             My Soundcloud
@@ -22,6 +25,9 @@ const AppMenu = ({filter}) => (
         <Menu.Item name='NO COMMENT' as={Link}  to='/nocomment'   active={filter === 'nocomment'} >
             <Icon name='comment outline' size='large'/>
         </Menu.Item>
+        <Menu.Item>
+            <Button basic content='Player' icon='music' labelPosition='left' onClick={toggleShowingPlayer} active={isShowingPlayer} inverted color='green' />
+        </Menu.Item>
         <Menu.Menu position='right'>
             <Menu.Item>
                 <SearchBar />
@@ -30,17 +36,30 @@ const AppMenu = ({filter}) => (
     </Menu>
 );
 
-AppMenu.propTypes = {
-    filter: PropTypes.oneOf(['all', 'commented', 'nocomment', null]).isRequired,
-}
-
 const mapStateToProps = (state, ownProps) => {
-    const filter = ownProps.match.params.filter || 'all';
+    const filter            = ownProps.match.params.filter || 'all';
+    const isShowingPlayer   = getIsShowingPlayer(state);
     return {
         filter,
+        isShowingPlayer,
     };
 };
 
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({toggleShowingPlayer}, dispatch);
+};
 
 
-export default withRouter(connect(mapStateToProps)(AppMenu));
+AppMenu.propTypes = {
+    filter              : PropTypes.oneOf(['all', 'commented', 'nocomment', null]).isRequired,
+    isShowingPlayer     : PropTypes.bool.isRequired,
+    toggleShowingPlayer : PropTypes.func.isRequired,
+};
+
+
+export default withRouter(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    )(AppMenu)
+);;
