@@ -22,9 +22,6 @@ class TrackList extends Component{
         if (errorMessage && !tracks.length){
             return <p>Error...</p>;
         }
-
-        // console.log('rerender !!');
-        // console.log(tracks);
         const tracksDom = tracks.map(track => <Track key={track.id} track={track} commentTrack={commentTrack} deleteTrack={deleteTrack} playTrack={playTrack} playingTrack={playingTrack} isPlaying={isPlaying} />);
         return (
             <Segment secondary padded>

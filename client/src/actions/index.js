@@ -32,11 +32,6 @@ export const addTrack = (track) => (dispatch, getState) => {
     });
 }
 
-export const playingTrack = (id, player) =>
-    ({type: 'PLAYING_TRACK', response: {id, player}});
-
-
-
 export const fetchTracks = (filter) => (dispatch, getState) => {
     dispatch({
         type: 'FETCH_TRACKS_REQUEST',
