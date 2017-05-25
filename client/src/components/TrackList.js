@@ -15,26 +15,27 @@ import {Card, Loader, Segment} from 'semantic-ui-react'
 class TrackList extends Component{
 
     render(){
-        const {tracks, isFetching, errorMessage, commentTrack, deleteTrack, playTrack, playingTrack, isPlaying} = this.props;
-        if (isFetching && !tracks.length){
-            return   <Loader active inline='centered' />;
-        }
-        if (errorMessage && !tracks.length){
-            return <p>Error...</p>;
-        }
-        const tracksDom = tracks.map(track => <Track key={track.id} track={track} commentTrack={commentTrack} deleteTrack={deleteTrack} playTrack={playTrack} playingTrack={playingTrack} isPlaying={isPlaying} />);
+        // const {tracks, isFetching, errorMessage, commentTrack, deleteTrack, playTrack, playingTrack, isPlaying} = this.props;
+        // if (isFetching && !tracks.length){
+        //     return   <Loader active inline='centered' />;
+        // }
+        // if (errorMessage && !tracks.length){
+        //     return <p>Error...</p>;
+        // }
+        // const tracksDom = tracks.map(track => <Track key={track.id} track={track} commentTrack={commentTrack} deleteTrack={deleteTrack} playTrack={playTrack} playingTrack={playingTrack} isPlaying={isPlaying} />);
         return (
-            <Segment secondary padded>
-                <Card.Group itemsPerRow={4} stackable>
-                    {tracksDom}
-                </Card.Group>
-            </Segment>
+            // <Segment secondary padded>
+            //     <Card.Group itemsPerRow={4} stackable>
+            //         {tracksDom}
+            //     </Card.Group>
+            // </Segment>
+            <h2>Here we are going to show something fun !!</h2>
         );
     }
 }
 
 TrackList.propTypes = {
-    filter:         PropTypes.oneOf(['all', 'commented', 'nocomment', null]).isRequired,
+    // filter:         PropTypes.oneOf(['all', 'commented', 'nocomment', null]).isRequired,
     // tracks:         PropTypes.arrayOf(PropTypes.shape({
     //     id     :    PropTypes.number.isRequired,
     //     detail :    PropTypes.object.isRequired,

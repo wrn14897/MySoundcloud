@@ -5,6 +5,9 @@ import * as schema from './schema';
  /**********************************************************************/
  //TODO -> Let's implement search action creator
  /**********************************************************************/
+export const searchTracks = (q) => (dispatch, getState) => {
+    
+};
 
 
 export const addTrack = (track) => (dispatch, getState) => {
@@ -30,7 +33,7 @@ export const addTrack = (track) => (dispatch, getState) => {
             message: error || 'Something wrong !!',
         });
     });
-}
+};
 
 export const fetchTracks = (filter) => (dispatch, getState) => {
     dispatch({
@@ -77,4 +80,4 @@ export const playTrack  = (track) => (dispatch, getState) => {
         dispatch({type: 'PLAY_TRACK', response: normalize(track, schema.track)});
     };
     dispatch({type: 'PLAY_TRACK', response: normalize(track, schema.track)});
-}
+};

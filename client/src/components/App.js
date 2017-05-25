@@ -16,7 +16,7 @@ const App = ({isShowingPlayer}) => (
             </Sidebar>
             <Sidebar.Pusher>
                 <AppMenu />
-                {/* <TrackList /> */}
+                <TrackList />
             </Sidebar.Pusher>
         </Sidebar.Pushable>
     </div>
