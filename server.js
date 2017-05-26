@@ -5,7 +5,10 @@ const Joi    = require('joi');
 
 //DB configs
 const pgp    = require('pg-promise')();
-const db     = pgp(`postgres://Warren@localhost:5432/workshop`);
+/**********************************************************************/
+//TODO -> Don't forget to tell pgp your pg config
+/**********************************************************************/
+const db          = pgp(`postgres://Warren@localhost:5432/workshop`);
 //Models
 const trackModule = require('./models/track');
 //APIs
