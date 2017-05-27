@@ -6,7 +6,26 @@ import * as schema from './schema';
  //TODO -> Let's implement search action creator
  /**********************************************************************/
 export const searchTracks = (q) => (dispatch, getState) => {
-    
+    dispatch({
+        type: 'SEARCH_TRACKS_REQUEST',
+        q,
+    });
+    return fetch(`/search?q=${q}`)
+        .then(response => response.json())
+        .then(json => {
+            dispatch({
+                type: 'SEARCH_TRACKS_SUCCESS',
+                response: json.data,
+                q,
+            });
+        })
+        .catch(error => {
+            dispatch({
+                type: 'SEARCH_TRACKS_FAILURE',
+                message: error || 'Something went wrong.',
+                q,
+            });
+        });
 };
 
 

@@ -14,6 +14,7 @@ export const createLogger = ({getState}) => (next) => (action) => {
 /**********************************************************************/
 //TODO -> Let's implement thunk middleware here
 /**********************************************************************/
-export const thunk = ({getState, dispatch}) => (next) => (action) => {
-    return next(action);
+export const thunk = ({dispatch, getState}) => (next) => (action) => {
+    return typeof action === 'function' ?
+                action(dispatch, getState) : next(action);
 };

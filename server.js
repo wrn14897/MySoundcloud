@@ -29,6 +29,24 @@ server.connection({
  /**********************************************************************/
  //TODO -> Let's implement search route here
  /**********************************************************************/
+ server.route({
+     method: 'GET',
+     path: '/search',
+     handler: (request, reply) => {
+         const {q} = request.query;
+         SC.searchTracks(q, (err, result) => {
+             if (err) return Boom.badImplementation(err);
+             reply(result);
+         });
+     },
+     config: {
+         validate: {
+             query: {
+                 q : Joi.string().required().allow('').allow(null),
+             }
+         }
+     }
+ });
 
 
 
@@ -48,15 +66,15 @@ server.connection({
              reply(result);
          });
      },
-     config: {
-         validate: {
-             payload: {
-                 id       : Joi.number().integer().required(),
-                 detail   : Joi.object().required(),
-                 comment  : Joi.string().required().allow('').allow(null),
-             }
-         }
-     }
+    //  config: {
+    //      validate: {
+    //          payload: {
+    //              id       : Joi.number().integer().required(),
+    //              detail   : Joi.object().required(),
+    //              comment  : Joi.string().required().allow('').allow(null),
+    //          }
+    //      }
+    //  }
  });
 
 server.route({

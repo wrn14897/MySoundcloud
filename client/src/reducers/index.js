@@ -8,7 +8,14 @@ import player,          * as playerSelectors        from './player';
 /**********************************************************************/
 //TODO -> Let's use combineReducers to construct state tree here
 /**********************************************************************/
+const trackListByFilter = combineReducers({
+    all         : createTrackList('all'),
+    commented   : createTrackList('commented'),
+    nocomment   : createTrackList('nocomment'),
+});
 const app = combineReducers({
+    trackListByFilter,
+    trackById,
     searchTracks,
     player,
 });
@@ -37,6 +44,11 @@ export const getIsPlaying = (state) =>
 /**********************************************************************/
 //TODO -> Let's implement selectors here
 /**********************************************************************/
-export const getTracks = (state, filter) => state;
-export const getIsFetching = (state, filter) => state;
-export const getErrorMessage = (state, filter) => state;
+export const getTracks = (state, filter) => {
+    const ids = trackListSelectors.getIds(state.trackListByFilter[filter]);
+    return ids.map(id => trackByIdSelectors.getTrackById(state.trackById ,id));
+};
+export const getIsFetching = (state, filter) =>
+    trackListSelectors.getIsFetching(state.trackListByFilter[filter]);
+export const getErrorMessage = (state, filter) =>
+    trackListSelectors.getErrorMessage(state.trackListByFilter[filter]);
