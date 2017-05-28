@@ -11,13 +11,20 @@ class Track extends Component{
             isEditing: !this.state.isEditing
         });
     }
-    handleSaveComment(track, commentTrack){
+    handleSaveComment(track){
+        const {commentTrack} = this.props;
         this.toggleIsEditing();
         commentTrack(track);
     }
+    handleDeleteTrack(track){
+        const {deleteTrack, playTrack, isPlaying} = this.props;
+        //if isPlaying, we stop the track
+        isPlaying && playTrack(track);
+        deleteTrack(track);
+    }
 
     render(){
-        const {track, commentTrack, deleteTrack, playTrack, playingTrack, isPlaying}  = this.props;
+        const {track, playTrack, playingTrack, isPlaying}  = this.props;
         const editArea = this.state.isEditing ?
                             <Form reply>
                                 <Form.TextArea onChange={ e => {
@@ -27,7 +34,7 @@ class Track extends Component{
                             :
                             track.comment;
         const editBtn = this.state.isEditing ?
-                            <Button basic icon='save' color='green' onClick={() => this.handleSaveComment.bind(this)(track, commentTrack)} />
+                            <Button basic icon='save' color='green' onClick={() => this.handleSaveComment(track)} />
                             :
                             <Button basic icon='edit' color='green' onClick={() => this.toggleIsEditing()} />;
         const playBtn = (isPlaying && playingTrack && playingTrack.id === track.id) ?
@@ -55,7 +62,7 @@ class Track extends Component{
                 <Card.Content extra>
                     <div className='ui three buttons'>
                         {editBtn}
-                        <Button basic icon='trash outline' color='red' onClick={() => deleteTrack(track)} />
+                        <Button basic icon='trash outline' color='red' onClick={() => this.handleDeleteTrack(track)} />
                         {playBtn}
                     </div>
                 </Card.Content>

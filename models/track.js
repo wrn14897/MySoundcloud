@@ -86,7 +86,7 @@ class track{
         /**********************************************************************/
         //TODO -> Let's implement queries here
         /**********************************************************************/
-        const query = ``;
+        const query = `DELETE FROM fav_track WHERE id = $1::int`;
         db.none(query, [track.id])
             .then(() => {
                 cb(null, {data: track});

@@ -42,7 +42,6 @@ class TrackList extends Component{
                     {tracksDom}
                 </Card.Group>
             </Segment>
-            // <h2>{filter}</h2>
         );
     }
 }
@@ -57,8 +56,8 @@ TrackList.propTypes = {
     isFetching      :    PropTypes.bool.isRequired,
     errorMessage    :    PropTypes.string,
     fetchTracks     :    PropTypes.func.isRequired,
-    // commentTrack    :    PropTypes.func.isRequired,
-    // deleteTrack     :    PropTypes.func.isRequired,
+    commentTrack    :    PropTypes.func.isRequired,
+    deleteTrack     :    PropTypes.func.isRequired,
     playTrack       :    PropTypes.func.isRequired,
     playingTrack    :    PropTypes.object,
     isPlaying       :    PropTypes.bool.isRequired,
@@ -82,7 +81,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({fetchTracks, playTrack}, dispatch);
+    return bindActionCreators({fetchTracks, playTrack, commentTrack, deleteTrack}, dispatch);
 };
 
 

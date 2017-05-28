@@ -6,7 +6,11 @@ import {combineReducers} from 'redux';
 /**********************************************************************/
 const createTrackList = (filter) => {
     const handleComment = (state, action) => {
-
+        const {result: id, entities} = action.response;
+        const {comment} = entities.tracks[id];
+        const shouldRemove = (filter === 'nocomment' && comment) || (filter === 'commented' && (!comment || comment === ''));
+        return shouldRemove ?
+                state.filter(entry => entry!== id) : state;
     }
 
     const ids = (state=[], action) => {
@@ -17,6 +21,11 @@ const createTrackList = (filter) => {
             case 'ADD_TRACK_SUCCESS':
                 return filter === 'commented' ?
                     state : [...state, action.response.result];
+            case 'COMMENT_TRACK_SUCCESS':
+                return handleComment(state, action);
+            case 'DELETE_TRACK_SUCCESS':
+                const {result: id} = action.response;
+                return state.filter(entry => entry !== id);
             default:
                 return state;
         }

@@ -30,7 +30,6 @@ export const searchTracks = (q) => (dispatch, getState) => {
 
 
 export const addTrack = (track) => (dispatch, getState) => {
-
     return fetch(`/track`,{
         method: 'POST',
         headers: {
@@ -84,6 +83,53 @@ export const fetchTracks = (filter) => (dispatch, getState) => {
 //TODO -> Let's implement comment and delete action creator
 /**********************************************************************/
 
+export const commentTrack = (track) => (dispatch, getState) => {
+    return fetch(`/track`,{
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(track),
+    })
+    .then(response => response.json())
+    .then(json => {
+        dispatch({
+            type: 'COMMENT_TRACK_SUCCESS',
+            response: normalize(json.data, schema.track),
+        });
+    })
+    .catch(error => {
+        dispatch({
+            type: 'COMMENT_TRACK_FAILURE',
+            message: error || 'Something wrong !!',
+        });
+    });
+};
+
+export const deleteTrack = (track) => (dispatch, getState) => {
+    return fetch(`/track`,{
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(track),
+    })
+    .then(response => response.json())
+    .then(json => {
+        dispatch({
+            type: 'DELETE_TRACK_SUCCESS',
+            response: normalize(json.data, schema.track),
+        });
+    })
+    .catch(error => {
+        dispatch({
+            type: 'DELETE_TRACK_FAILURE',
+            message: error || 'Something wrong !!',
+        });
+    });
+};
 
 /*
     Player

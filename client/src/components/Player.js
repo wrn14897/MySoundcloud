@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {getPlayingTrack, getIsPlaying} from '../reducers';
 import {toggleShowingPlayer, playTrack} from '../actions';
-import { Segment, Progress, Button, Header, Image, Statistic, Icon, Rating } from 'semantic-ui-react';
+import { Segment, Progress, Button, Header, Image } from 'semantic-ui-react';
 import SoundCloudAudio from 'soundcloud-audio';
 
 const CLIENT_ID = "1c3aeb3f91390630d351f3c708148086";

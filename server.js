@@ -66,15 +66,15 @@ server.connection({
              reply(result);
          });
      },
-    //  config: {
-    //      validate: {
-    //          payload: {
-    //              id       : Joi.number().integer().required(),
-    //              detail   : Joi.object().required(),
-    //              comment  : Joi.string().required().allow('').allow(null),
-    //          }
-    //      }
-    //  }
+     config: {
+         validate: {
+             payload: {
+                 id       : Joi.number().integer().required(),
+                 detail   : Joi.object().required(),
+                 comment  : Joi.string().required().allow('').allow(null),
+             }
+         }
+     }
  });
 
 server.route({
@@ -120,7 +120,26 @@ server.route({
 /**********************************************************************/
 //TODO -> Let's implement delete track route here
 /**********************************************************************/
-
+server.route({
+    method: 'DELETE',
+    path: '/track',
+    handler: (request, reply) => {
+        const track = request.payload;
+        trackModule.removeTrack(db, track, (err, result) => {
+            if (err) return reply(Boom.badImplementation(err));
+            reply(result);
+        });
+    },
+    config: {
+        validate: {
+            payload: {
+                id       : Joi.number().integer().required(),
+                detail   : Joi.object().required(),
+                comment  : Joi.string().required().allow('').allow(null),
+            }
+        }
+    }
+});
 
 
 server.start(err => {
